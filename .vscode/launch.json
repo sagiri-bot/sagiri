@@ -10,7 +10,6 @@
             "name": "Run Sagiri",
             "envFile": "${workspaceFolder}/.env",
             "program": "${workspaceRoot}/build/index.js",
-			"args": ["-v", "${file}"],
             "cwd": "${workspaceRoot}",
 			"outFiles": [ "${workspaceRoot}/build/**/*.js" ],
             "sourceMaps": true,
