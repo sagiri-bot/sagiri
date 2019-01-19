@@ -1,10 +1,13 @@
-import { ComponentAPI, SubscribeEvent } from '@ayana/bento';
-
+import { Component, ComponentAPI, SubscribeEvent } from '@ayana/bento';
+import { Logger } from '@ayana/logger';
 import * as Eris from 'eris';
-
+import { EventEmitter } from 'events';
+const log = Logger.get('DiscordComponents');
 export class Discord {
 	public api: ComponentAPI;
-	public name: string = 'name';
+	public name: string = 'Discord';
+
+	public dependencies: Array<Component> = [];
 
 	private cli: Eris.Client = null;
 
@@ -19,16 +22,5 @@ export class Discord {
 		this.api.forwardEvents(this.cli, ['ready', 'messageCreate']);
 
 		this.cli.connect();
-	}
-
-	@SubscribeEvent(Discord, 'ready')
-	private onReady() {
-		console.log(`Logged in as ${this.cli.user.username}#${this.cli.user.discriminator}`);
-		this.cli.editStatus('online', { name: 'trying bento' });
-	}
-
-	@SubscribeEvent(Discord, 'messageCreate')
-	private async onMessageCreate(message: Eris.Message) {
-		console.log(`onMessageCreate`);
 	}
 }
