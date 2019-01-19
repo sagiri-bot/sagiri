@@ -1,0 +1,36 @@
+{
+  "name": "sagiri",
+  "version": "4.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@weeb.codes:Sagiri/sagiri.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "sagiri",
+    "loli",
+    "kiru",
+    "eris",
+    "bento"
+  ],
+  "author": "kiru <me@kiru.space>",
+  "license": "MIT",
+  "dependencies": {
+    "@ayana/bento": "latest",
+    "@ayana/logger": "next",
+    "eris": "abalabahaha/eris"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.7",
+    "tslint": "^5.11.0",
+    "tslint-config-xo": "^2.0.0",
+    "typescript": "^3.1.6"
+  }
+}

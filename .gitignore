@@ -1,7 +1,7 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 
-# Created by https://www.gitignore.io/api/linux,node,virtualenv,visualstudiocode,logtalk
-# Edit at https://www.gitignore.io/?templates=linux,node,virtualenv,visualstudiocode,logtalk
+# Created by https://www.gitignore.io/api/linux,visualstudiocode,node,typings
+# Edit at https://www.gitignore.io/?templates=linux,visualstudiocode,node,typings
 
 ### Linux ###
 *~
@@ -17,27 +17,6 @@
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
-### Logtalk ###
-# gitignore template for LogTalk, a programming language that builds upon Prolog
-# website: https://logtalk.org/
-
-# Logtalk temporary file directories
-.lgt_tmp/
-lgt_tmp/
-
-# Logtalk default unit testing and doclet results and logs directories
-logtalk_tester_logs/
-logtalk_doclet_logs/
-
-# backend Prolog compiler temporary files
-.pl-history
-*.out
-*.xwam
-*.qo
-*.ql
-*.itf
-*.po
 
 ### Node ###
 # Logs
@@ -121,19 +100,12 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-### VirtualEnv ###
-# Virtualenv
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-.Python
-[Bb]in
-[Ii]nclude
-[Ll]ib
-[Ll]ib64
-[Ll]ocal
-[Ss]cripts
-pyvenv.cfg
-.venv
-pip-selfcheck.json
+### Typings ###
+## Ignore downloaded typings
+typings
+
+# Build
+build
 
 ### VisualStudioCode ###
 .vscode/*
@@ -146,7 +118,7 @@ pip-selfcheck.json
 # Ignore all local history of files
 .history
 
-# End of https://www.gitignore.io/api/linux,node,virtualenv,visualstudiocode,logtalk
+# End of https://www.gitignore.io/api/linux,visualstudiocode,node,typings
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 

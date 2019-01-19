@@ -1,0 +1,33 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"declaration": true,
+		"moduleResolution": "node",
+		"module": "commonjs",
+		"outDir": "./build",
+		"lib": [
+			"es2017"
+		],
+		"typeRoots": [
+			"./lib/@types"
+		],
+		"types": [
+			"node"
+		],
+		"forceConsistentCasingInFileNames": true,
+		"pretty": false,
+		"target": "ES2017",
+		"noImplicitAny": true,
+		"sourceMap": true,
+		"skipLibCheck": true,
+		"disableSizeLimit": true,
+		"allowJs": false,
+		"experimentalDecorators": true
+	},
+	"include": [
+		"./src"
+	],
+	"exclude": [
+		"./node_modules"
+	]
+}
