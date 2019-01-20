@@ -2,8 +2,8 @@
 import { ConfigBuilder, ConfigDefinitionType } from '@ayana/bento';
 
 export enum Config {
-    BOT_TOKEN = 'botToken',
-    BOT_PREFIX = '!'
+	BOT_TOKEN = 'botToken',
+	BOT_PREFIX = 'botPrefix'
 }
 
 export const Definitions = new ConfigBuilder()
@@ -16,5 +16,4 @@ export const Definitions = new ConfigBuilder()
 	type: ConfigDefinitionType.STRING,
 	env: 'BOT_PREFIX',
 })
-
 .build();
