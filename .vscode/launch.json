@@ -8,13 +8,12 @@
             "type": "node",
             "request": "launch",
             "name": "Run Sagiri",
-            "envFile": "${workspaceFolder}/.env",
-            "program": "${workspaceRoot}/build/index.js",
-            "cwd": "${workspaceRoot}",
-			"outFiles": [ "${workspaceRoot}/build/**/*.js" ],
+            "program": "${workspaceFolder}/build/index.js",
+            "cwd": "${workspaceFolder}",
+			"outFiles": [ "${workspaceFolder}/build/**/*.js" ],
             "sourceMaps": true,
             "outputCapture": "std",
-            "preLaunchTask": "npm: build"
+            "useWSL": true
         }
     ]
 }

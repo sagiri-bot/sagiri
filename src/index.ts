@@ -2,7 +2,9 @@
 import { Bento, ConfigLoader, FSComponentLoader } from '@ayana/bento';
 
 import { Logger } from '@ayana/logger';
+import * as dotenv from 'dotenv';
 import { Definitions } from './Config';
+dotenv.config({ path: `${__dirname}/../.env` });
 
 const log = Logger.get('index');
 
