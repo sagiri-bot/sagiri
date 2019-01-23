@@ -4,6 +4,8 @@ import {
 	ComponentAPI,
 	FSComponentLoader,
 	SubscribeEvent,
+	Variable,
+	VariableDefinitionType
 } from '@ayana/bento';
 
 import { Message, TextChannel } from 'eris';
@@ -23,10 +25,11 @@ export class Commands {
 
 	private commands: Map<string, Command> = new Map();
 
-	private prefix: string = Config.BOT_PREFIX;
+	@Variable({ type: VariableDefinitionType.STRING, name: Config.BOT_PREFIX, default: null })
+    private prefix: string = null;
 
 	public async onLoad() {
-		log.info(`Loading commands...`);
+		log.info('Loading commands...');
 		await this.api.loadComponents(FSComponentLoader, __dirname, '../commands');
 	}
 
@@ -49,8 +52,8 @@ export class Commands {
 	}
 
 	public async addCommand(command: Command) {
-		if (typeof command.execute !== 'function') throw new Error(`Command component execute must be a function`);
-		if (typeof command.command !== 'string') throw new Error(`Command component command must be a string`);
+		if (typeof command.execute !== 'function') throw new Error('Command component execute must be a function');
+		if (typeof command.command !== 'string') throw new Error('Command component command must be a string');
 
 		// check if dupe
 		if (this.commands.has(command.command)) throw new Error(`Command already exists`);
