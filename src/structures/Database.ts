@@ -20,6 +20,8 @@ export class Database {
 	private db: string = null;
 
 	public async onLoad() {
+		if (this.db == null) throw new Error('Please set the DB env variable to your postgres URL');
+
 		const connectionManager = new ConnectionManager();
 		log.info('Connecting database...');
 
