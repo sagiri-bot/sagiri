@@ -5,7 +5,7 @@
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf build/ && tsc"
+    "build": "tsc -p ."
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,11 @@
   "dependencies": {
     "@ayana/bento": "latest",
     "@ayana/logger": "next",
-    "eris": "abalabahaha/eris"
+    "@types/dotenv": "^6.1.0",
+    "dotenv": "^6.2.0",
+    "eris": "abalabahaha/eris",
+    "pg": "^7.8.0",
+    "typeorm": "^0.2.12"
   },
   "devDependencies": {
     "@types/node": "^10.12.7",

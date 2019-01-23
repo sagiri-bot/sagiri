@@ -3,7 +3,6 @@ import * as Eris from 'eris';
 
 import {
 	ComponentAPI,
-	SubscribeEvent,
 	Variable,
 	VariableDefinitionType,
 } from '@ayana/bento';

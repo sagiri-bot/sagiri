@@ -3,7 +3,8 @@ import { ConfigBuilder, ConfigDefinitionType } from '@ayana/bento';
 
 export enum Config {
 	BOT_TOKEN = 'botToken',
-	BOT_PREFIX = 'botPrefix'
+	BOT_PREFIX = 'botPrefix',
+	DB = 'postgres://user:password@localhost/db'
 }
 
 export const Definitions = new ConfigBuilder()
@@ -15,5 +16,9 @@ export const Definitions = new ConfigBuilder()
 .add(Config.BOT_PREFIX, {
 	type: ConfigDefinitionType.STRING,
 	env: 'BOT_PREFIX',
+})
+.add(Config.DB, {
+	type: ConfigDefinitionType.STRING,
+	env: 'DB',
 })
 .build();
