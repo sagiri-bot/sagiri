@@ -17,7 +17,7 @@ export class Discord {
 	public api: ComponentAPI;
 	public name: string = 'Discord';
 
-	private cli: Eris.Client = null;
+	public cli: Eris.Client = null;
 
 	@Variable({ type: VariableDefinitionType.STRING, name: Config.BOT_TOKEN, default: null })
 	private token: string = null;

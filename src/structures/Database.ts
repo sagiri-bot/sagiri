@@ -6,7 +6,7 @@ import {
 } from '@ayana/bento';
 
 import { Logger } from '@ayana/logger';
-import { ConnectionManager } from 'typeorm';
+import { Connection, ConnectionManager } from 'typeorm';
 import { Config } from '../Config';
 import { Setting } from '../models/Settings';
 
@@ -17,19 +17,22 @@ export class Database {
 	public name: string = 'Database';
 
 	@Variable({ type: VariableDefinitionType.STRING, name: Config.DB, default: null })
-	private db: string = null;
+	private url: string = null;
+
+	public db: Connection;
 
 	public async onLoad() {
-		if (this.db == null) throw new Error('Please set the DB env variable to your postgres URL');
+		if (this.url == null) throw new Error('Please set the DB env variable to your postgres URL');
 
-		const connectionManager = new ConnectionManager();
+		const connection = new ConnectionManager();
+
 		log.info('Connecting database...');
 
-		connectionManager.create({
+		connection.create({
 			name: 'sagiri',
 			type: 'postgres',
 			synchronize: true,
-			url: this.db,
+			url: this.url,
 			entities: [Setting]
 		});
 
