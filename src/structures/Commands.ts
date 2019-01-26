@@ -26,7 +26,7 @@ export class Commands {
 	private commands: Map<string, Command> = new Map();
 
 	@Variable({ type: VariableDefinitionType.STRING, name: Config.BOT_PREFIX, default: null })
-    private prefix: string = null;
+	private prefix: string = null;
 
 	public async onLoad() {
 		log.info('Loading commands...');

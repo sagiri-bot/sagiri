@@ -8,6 +8,7 @@ import {
 import { Logger } from '@ayana/logger';
 import { Connection, ConnectionManager } from 'typeorm';
 import { Config } from '../Config';
+import { Reminder } from '../models/Reminders';
 import { Setting } from '../models/Settings';
 
 const log = Logger.get('Database');
@@ -28,14 +29,16 @@ export class Database {
 
 		log.info('Connecting database...');
 
-		connection.create({
+		const db = await connection.create({
 			name: 'sagiri',
 			type: 'postgres',
 			synchronize: true,
 			url: this.url,
-			entities: [Setting]
+			entities: [Setting, Reminder]
 		});
 
-		log.info('Connected to the database');
+		this.db = db;
+
+		await log.info('Connected to the database');
 	}
 }

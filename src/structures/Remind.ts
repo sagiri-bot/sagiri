@@ -6,9 +6,9 @@ import {
 
 import { Logger } from '@ayana/logger';
 import { TextChannel } from 'eris';
-import { LessThan, Repository } from 'typeorm';
+import { LessThan } from 'typeorm';
 import { Discord } from '../components/Discord';
-import { Reminder } from '../models/Reminder';
+import { Reminder } from '../models/Reminders';
 import { Database } from './Database';
 
 const log = Logger.get('Remind');
@@ -30,7 +30,6 @@ export class Remind {
 	private queuedSchedules = new Map();
 
 	public async onLoad() {
-		console.log(this.database.db);
 		await this._check();
 		this.checkInterval = setInterval(this._check.bind(this), this.checkRate);
 	}
