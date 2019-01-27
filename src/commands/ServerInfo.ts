@@ -45,7 +45,7 @@ export class ServerInfo implements Command {
 					},
 					{
 						name: 'Creation date',
-						value: moment(channel.guild.createdAt).fromNow()
+						value: moment(channel.guild.createdAt, 'YYYYMMDD').fromNow()
 					},
 				]
 			}
