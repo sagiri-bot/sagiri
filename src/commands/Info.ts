@@ -21,7 +21,8 @@ export class Info implements Command {
 			embed: {
 				author: {
 					name: this.discord.cli.user.username,
-					icon_url: this.discord.cli.user.staticAvatarURL
+					icon_url: this.discord.cli.user.staticAvatarURL,
+					url: 'https://sagiri.party'
 				},
 				fields: [
 					{
