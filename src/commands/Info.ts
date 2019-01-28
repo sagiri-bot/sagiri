@@ -12,7 +12,7 @@ export class Info implements Command {
 	public parent: Component = Commands;
 
 	@Inject(Discord)
-    private discord: Discord;
+	private discord: Discord;
 
 	public command: string = 'info';
 
