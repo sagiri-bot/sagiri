@@ -42,4 +42,10 @@ export class Database {
 
 		await log.info('Connected to the database');
 	}
+
+	public async onUnload() {
+		await this.db.close();
+
+		await log.info('Database connection closed');
+	}
 }
