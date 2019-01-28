@@ -20,9 +20,7 @@
 		"sourceMap": true,
 		"skipLibCheck": true,
 		"disableSizeLimit": true,
-		"resolveJsonModule": true,
 		"allowJs": false,
-		"esModuleInterop": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true
 	},

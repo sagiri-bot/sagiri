@@ -1,7 +1,6 @@
 
 import { Component, ComponentAPI } from '@ayana/bento';
 import { User } from 'eris';
-import { HumanizeDuration } from 'humanize-duration-ts';
 import moment from 'moment';
 import { Command, CommandExecute } from '../interfaces';
 import { Commands } from '../structures';
