@@ -1,6 +1,7 @@
 
 import { Component, ComponentAPI } from '@ayana/bento';
-import { EmbedOptions, User } from 'eris';
+import { User } from 'eris';
+import { HumanizeDuration } from 'humanize-duration-ts';
 import moment from 'moment';
 import { Command, CommandExecute } from '../interfaces';
 import { Commands } from '../structures';
@@ -40,13 +41,29 @@ export class ServerInfo implements Command {
 					},
 					{
 						name: 'Members',
-						value: `${channel.guild.memberCount - bots} Bots: ${bots}`,
+						value: `Members: ${channel.guild.memberCount - bots} / Bots: ${bots}`,
 						inline: true
 					},
 					{
 						name: 'Creation date',
-						value: moment(channel.guild.createdAt, 'YYYYMMDD').fromNow()
+						value: moment(channel.guild.createdAt).toString(),
+						inline: true
 					},
+					{
+						name: 'Verification Level',
+						value: channel.guild.verificationLevel.toString(),
+						inline: true
+					},
+					{
+						name: 'Emojis',
+						value: channel.guild.emojis.length.toString() || 'None',
+						inline: true,
+					},
+					{
+						name: 'Roles',
+						value: channel.guild.roles.size.toString() || 'None',
+						inline: true,
+					}
 				]
 			}
 		});

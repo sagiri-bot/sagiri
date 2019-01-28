@@ -8,7 +8,6 @@ import {
 import { Logger } from '@ayana/logger';
 import { Connection, ConnectionManager } from 'typeorm';
 import { Config } from '../Config';
-import { Reminder } from '../models/Reminders';
 import { Setting } from '../models/Settings';
 
 const log = Logger.get('Database');
@@ -22,20 +21,22 @@ export class Database {
 
 	public db: Connection;
 
+	public connectionManager = new ConnectionManager();
+
 	public async onLoad() {
 		if (this.url == null) throw new Error('Please set the DB env variable to your postgres URL');
 
-		const connection = new ConnectionManager();
-
 		log.info('Connecting database...');
 
-		const db = await connection.create({
+		const db = this.connectionManager.create({
 			name: 'sagiri',
 			type: 'postgres',
-			synchronize: true,
 			url: this.url,
-			entities: [Setting, Reminder]
+			synchronize: true,
+			entities: [Setting]
 		});
+
+		await db.connect();
 
 		this.db = db;
 
