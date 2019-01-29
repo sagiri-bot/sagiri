@@ -47,3 +47,5 @@ export class Discord {
 		this.cli = null;
 	}
 }
+
+process.on('unhandledRejection', err => log.error(err));

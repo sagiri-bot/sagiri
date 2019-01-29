@@ -17,7 +17,7 @@ import { Command, CommandExecute } from '../interfaces';
 
 import { Logger } from '@ayana/logger';
 import { Setting } from '../models/Settings';
-import { Database } from './Database';
+import { SettingProvider } from './Setting';
 const log = Logger.get(null);
 
 export class Commands {
@@ -31,8 +31,8 @@ export class Commands {
 	@Variable({ type: VariableDefinitionType.STRING, name: Config.BOT_PREFIX, default: null })
 	private prefix: string = null;
 
-	@Inject(Database)
-	private database: Database;
+	@Inject(SettingProvider)
+	private settingsprovider: SettingProvider;
 
 	public async onLoad() {
 		log.info('Loading commands...');
@@ -74,32 +74,25 @@ export class Commands {
 
 	@SubscribeEvent(Discord, DiscordEvent.MESSAGE_CREATE)
 	private async handleMessageCreate(message: Message) {
-		const settingRepo = await this.database.db.getRepository(Setting);
 		const channel = message.channel;
 		const author = message.author;
 
 		// ignore messages from non text channels
 		if (!(channel instanceof TextChannel)) return;
 
-		const guild = await settingRepo.findOne({ guild: channel.guild.id });
-
-		if (!guild) {
-			let settings = new Setting();
-			settings.guild = channel.guild.id;
-
-			settings = await settingRepo.save(settings);
-		}
-
+		const settings = await this.settingsprovider.get(Setting, channel.guild, undefined);
 		// ignore no content, no channel, and anything from a bot
 		if (!message.content || !channel || author.bot) return;
 		const raw = message.content;
 
+		console.log(typeof settings.prefix);
+
 		// this is a very simple parser, replace it with regex if you know how
-		if (!raw.startsWith(guild.prefix)) return;
+		if (!raw.startsWith(settings.prefix)) return;
 
 		// split on spaces, making first element of array {prefix}command
 		const args: string[] = raw.split(' ');
-		const commandName = args[0].slice(this.prefix.length).toLowerCase(); // remove prefix
+		const commandName = args[0].slice(settings.prefix.length).toLowerCase(); // remove prefix
 
 		// check if known command
 		if (!this.commands.has(commandName)) return;
@@ -110,6 +103,7 @@ export class Commands {
 			message,
 			channel,
 			author,
+			settings,
 			args: args.slice(1), // remove first element
 		};
 
