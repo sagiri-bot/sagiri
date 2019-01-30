@@ -3,14 +3,15 @@ import * as Eris from 'eris';
 
 import {
 	ComponentAPI,
+	Inject,
 	Variable,
 	VariableDefinitionType,
 } from '@ayana/bento';
 
+import { Logger } from '@ayana/logger';
 import { Config } from '../Config';
 import { DiscordEvent } from '../Constants';
-
-import { Logger } from '@ayana/logger';
+import { SettingProvider } from '../structures/Setting';
 const log = Logger.get('Discord');
 
 export class Discord {
@@ -21,6 +22,9 @@ export class Discord {
 
 	@Variable({ type: VariableDefinitionType.STRING, name: Config.BOT_TOKEN, default: null })
 	private token: string = null;
+
+	@Inject(SettingProvider)
+	public settingsprovider: SettingProvider;
 
 	public async onLoad() {
 		if (this.token == null) throw new Error(`Please set the BOT_TOKEN env variable to your token`);

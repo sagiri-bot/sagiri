@@ -16,8 +16,6 @@ import { DiscordEvent } from '../Constants';
 import { Command, CommandExecute } from '../interfaces';
 
 import { Logger } from '@ayana/logger';
-import { Setting } from '../models/Settings';
-import { SettingProvider } from './Setting';
 const log = Logger.get(null);
 
 export class Commands {
@@ -28,11 +26,11 @@ export class Commands {
 
 	private commands: Map<string, Command> = new Map();
 
+	@Inject(Discord)
+	private client: Discord;
+
 	@Variable({ type: VariableDefinitionType.STRING, name: Config.BOT_PREFIX, default: null })
 	private prefix: string = null;
-
-	@Inject(SettingProvider)
-	private settingsprovider: SettingProvider;
 
 	public async onLoad() {
 		log.info('Loading commands...');
@@ -80,12 +78,10 @@ export class Commands {
 		// ignore messages from non text channels
 		if (!(channel instanceof TextChannel)) return;
 
-		const settings = await this.settingsprovider.get(Setting, channel.guild, undefined);
+		const settings = await this.client.settingsprovider.get(channel.guild);
 		// ignore no content, no channel, and anything from a bot
 		if (!message.content || !channel || author.bot) return;
 		const raw = message.content;
-
-		console.log(typeof settings.prefix);
 
 		// this is a very simple parser, replace it with regex if you know how
 		if (!raw.startsWith(settings.prefix)) return;

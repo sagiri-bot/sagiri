@@ -21,6 +21,7 @@
 		"skipLibCheck": true,
 		"disableSizeLimit": true,
 		"allowJs": false,
+		"suppressImplicitAnyIndexErrors": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true
 	},
