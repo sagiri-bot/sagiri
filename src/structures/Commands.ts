@@ -94,12 +94,15 @@ export class Commands {
 		if (!this.commands.has(commandName)) return;
 		const command = this.commands.get(commandName);
 
+		const music = this.client.music;
+
 		// build commandExecute
 		const execute: CommandExecute = {
 			message,
 			channel,
 			author,
 			settings,
+			music,
 			args: args.slice(1), // remove first element
 		};
 

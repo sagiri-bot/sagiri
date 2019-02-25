@@ -10,6 +10,7 @@ import {
 
 import { Logger } from '@ayana/logger';
 import { Client as MusicClient } from 'lavaqueue';
+import { ExtendedRedis } from 'lavaqueue/typings/QueueStore';
 import Storage from 'rejects';
 import { Config } from '../Config';
 import { DiscordEvent } from '../Constants';
@@ -25,46 +26,31 @@ export class Discord {
 	@Variable({ type: VariableDefinitionType.STRING, name: Config.BOT_TOKEN, default: null })
 	private token: string = null;
 
-	@Variable({ type: VariableDefinitionType.STRING, name: Config.LAVALINK_WS, default: null })
-	private ws: string = null;
-
-	@Variable({ type: VariableDefinitionType.STRING, name: Config.LAVALINK_REST, default: null })
-	private rest: string = null;
-
-	@Variable({ type: VariableDefinitionType.STRING, name: Config.LAVALINK_PASS, default: null })
-	private pass: string = null;
-
-	@Variable({ type: VariableDefinitionType.STRING, name: Config.REDIS, default: null })
-	private redis: string = null;
-
-	@Variable({ type: VariableDefinitionType.STRING, name: Config.BOT_ID, default: null })
-	private id: string = null;
-
 	@Inject(SettingProvider)
 	public settingsprovider: SettingProvider;
 
 	public music: MusicClient = new MusicClient({
-		password: this.pass,
-		userID: this.id,
+		password: process.env.LAVALINK_PASS,
+		userID: process.env.BOT_ID,
 		hosts: {
-			rest: `http://${this.rest}`,
-			ws: `ws://${this.ws}`,
-			redis: this.redis ? {
+			rest: process.env.LAVALINK_REST,
+			ws: process.env.LAVALINK_WS,
+			redis: process.env.REDIS ? {
 				port: 6379,
-				host: this.redis,
+				host: process.env.REDIS,
 				db: 0
 			} : undefined
 		},
 		send: async (guild: string, packet: any): Promise<void> => {
-			if (this.cli.guilds.has(guild)) {
-				await (this as any).ws.send(packet);
-			}
+			const shardGuild = this.cli.guilds.get(guild);
+			shardGuild.shard.sendWS(packet.op, packet.d);
+			return Promise.resolve();
 		}
 	});
 
-	public redis_music = this.music.queues.redis;
+	public redis: ExtendedRedis = this.music.queues.redis;
 
-	public storage = new Storage(this.redis_music);
+	public storage: Storage = new Storage(this.redis);
 
 	public async onLoad() {
 		if (this.token == null) throw new Error(`Please set the BOT_TOKEN env variable to your token`);

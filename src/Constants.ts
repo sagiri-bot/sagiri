@@ -16,4 +16,7 @@ export enum DiscordEvent {
 
 	// Message events
 	MESSAGE_CREATE = 'messageCreate',
+
+	READY = 'ready',
+	rawWS = 'rawWS'
 }

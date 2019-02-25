@@ -26,15 +26,18 @@
     "@ayana/bento": "latest",
     "@ayana/logger": "next",
     "@types/dotenv": "^6.1.0",
+    "common-tags": "^1.8.0",
     "dotenv": "^6.2.0",
     "eris": "abalabahaha/eris",
     "lavaqueue": "^3.1.0",
     "moment": "^2.24.0",
+    "path": "^0.12.7",
     "pg": "^7.8.0",
     "rejects": "^0.6.2",
     "typeorm": "^0.2.12"
   },
   "devDependencies": {
+    "@types/common-tags": "^1.8.0",
     "@types/node": "^10.12.7",
     "tslint": "^5.11.0",
     "tslint-config-xo": "^2.0.0",
