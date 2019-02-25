@@ -10,6 +10,10 @@ export enum DiscordEvent {
 	GUILD_DELETE = 'guildDelete',
 	GUILD_UPDATE = 'guildUpdate',
 
+	// Voice events
+	VOICE_STATE_UPDATE = 'voiceStateUpdate',
+	VOICE_SERVER_UPDATE = 'voiceServerUpdate',
+
 	// Message events
 	MESSAGE_CREATE = 'messageCreate',
 }
