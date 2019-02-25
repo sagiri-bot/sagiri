@@ -31,6 +31,7 @@
     "lavaqueue": "^3.1.0",
     "moment": "^2.24.0",
     "pg": "^7.8.0",
+    "rejects": "^0.6.2",
     "typeorm": "^0.2.12"
   },
   "devDependencies": {
