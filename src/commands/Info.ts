@@ -46,6 +46,11 @@ export class Info implements Command {
 						inline: true
 					},
 					{
+						name: 'Memory Usage',
+						value: `${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB`,
+						inline: true
+					},
+					{
 						name: 'Servers',
 						value: this.discord.cli.guilds.size.toString(),
 						inline: true
@@ -55,6 +60,11 @@ export class Info implements Command {
 						value: this.discord.cli.users.size.toString(),
 						inline: true
 					},
+					{
+						name: 'GitHub Repository',
+						value: '[sagiri-bot/sagiri](https://github.com/sagiri-bot/sagiri)',
+						inline: true
+					}
 				]
 			}
 		});
