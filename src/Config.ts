@@ -7,6 +7,7 @@ export enum Config {
 	BOT_ID = 'botID',
 	DB = 'postgres://user:password@localhost/db',
 	REDIS = 'localhost',
+	WEEB_SH = 'weeb.sh key',
 	LAVALINK_REST = 'lavalinkRest',
 	LAVALINK_WS = 'lavalinkWS',
 	LAVALINK_PASS = 'lavalinkPass'
@@ -33,6 +34,10 @@ export const Definitions = new ConfigBuilder()
 .add(Config.REDIS, {
 	type: ConfigDefinitionType.STRING,
 	env: 'REDIS',
+})
+.add(Config.WEEB_SH, {
+	type: ConfigDefinitionType.STRING,
+	env: 'WEEB_SH',
 })
 .add(Config.LAVALINK_REST, {
 	type: ConfigDefinitionType.STRING,

@@ -18,6 +18,63 @@ import { Command, CommandExecute } from '../interfaces';
 import { Logger } from '@ayana/logger';
 const log = Logger.get(null);
 
+const types = [
+	'awoo',
+	'blush',
+	'clagwimoth',
+	'bang',
+	'cry',
+	'cuddle',
+	'dance',
+	'hug',
+	'insult',
+	'jojo',
+	'kiss',
+	'lewd',
+	'lick',
+	'megumin',
+	'neko',
+	'nom',
+	'owo',
+	'pat',
+	'pout',
+	'rem',
+	'slap',
+	'smile',
+	'smug',
+	'stare',
+	'thumbsup',
+	'triggered',
+	'wag',
+	'waifu_insult',
+	'tickle',
+	'banghead',
+	'bite',
+	'discord_memes',
+	'nani',
+	'initial_d',
+	'delet_this',
+	'thinking',
+	'greet',
+	'punch',
+	'kemonomimi',
+	'deredere',
+	'animal_cat',
+	'animal_dog',
+	'poke',
+	'shrug',
+	'sleepy',
+	'dab',
+	'teehee',
+	'poi',
+	'highfive',
+	'trap',
+	'handholding',
+	'sumfuk',
+	'wasted',
+	'baka'
+];
+
 export class Commands {
 	public api: ComponentAPI;
 	public name: string = 'Commands';
@@ -87,12 +144,16 @@ export class Commands {
 		if (!raw.startsWith(settings.prefix)) return;
 
 		// split on spaces, making first element of array {prefix}command
-		const args: string[] = raw.split(' ');
+		let args: string[] = raw.split(' ');
 		const commandName = args[0].slice(settings.prefix.length).toLowerCase(); // remove prefix
 
 		// check if known command
-		if (!this.commands.has(commandName)) return;
-		const command = this.commands.get(commandName);
+		let command;
+		if (!this.commands.has(commandName) && !types.includes(commandName)) return;
+		if (types.includes(commandName)) {
+			command = this.commands.get('weebsh');
+			args.push(commandName);
+		} else command = this.commands.get(commandName);
 
 		const music = this.client.music;
 

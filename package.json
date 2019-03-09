@@ -26,6 +26,7 @@
     "@ayana/bento": "latest",
     "@ayana/logger": "next",
     "@types/dotenv": "^6.1.0",
+    "axios": "^0.18.0",
     "common-tags": "^1.8.0",
     "dotenv": "^6.2.0",
     "eris": "abalabahaha/eris",
