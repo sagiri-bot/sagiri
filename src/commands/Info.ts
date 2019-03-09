@@ -4,6 +4,7 @@ import { Discord } from '../components/Discord';
 import { Command, CommandExecute } from '../interfaces';
 import { Commands } from '../structures';
 import { ms } from '../utils/ms';
+const pkg = require('../../package.json');
 
 export class Info implements Command {
 	public api: ComponentAPI;
@@ -27,7 +28,7 @@ export class Info implements Command {
 				fields: [
 					{
 						name: 'Version',
-						value: '4.0.0',
+						value: pkg.version,
 						inline: true
 					},
 					{
